@@ -41,6 +41,30 @@ Breeds.critter_pig["hit_zones"]  = {
     }
 }
 
+Breeds.critter_rat["base_unit"] = unit_path
+Breeds.critter_rat["hit_zones"]  = {
+    neck = {
+        prio = 1,
+        actors = {
+            "c_head"
+           
+        }
+    },
+    torso = {
+        prio = 2,
+        actors = {
+            "c_head"
+        },
+        push_actors = {
+            "head_0"
+        }
+    },
+    full = {
+        prio = 3,
+        actors = {}
+    }
+}
+
 
 local function replace_textures(unit)
     if Unit.has_data(unit, "mat_to_use") then
@@ -71,7 +95,25 @@ local function replace_textures(unit)
     end 
 end
 
-mod:command("spawn_squig", "", function()
+local function spawn_package_to_player (package_name)
+	local player = Managers.player:local_player()
+	local world = Managers.world:world("level_world")
+  
+	if world and player and player.player_unit then
+	  local player_unit = player.player_unit
+  
+	  local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+	  local rotation = Unit.local_rotation(player_unit, 0)
+	  local unit = World.spawn_unit(world, package_name, position, rotation)
+  
+	  mod:chat_broadcast(#NetworkLookup.inventory_packages + 1)
+	  return unit
+	end
+  
+	return nil
+end
+
+mod:command("spawn_squig", "spawns the squig model without being linked to ai", function()
     local unit = spawn_package_to_player("units/squig_herd/grn_squig_herd_01")
     replace_textures(unit)
 end)
@@ -79,6 +121,19 @@ end)
 mod:hook(UnitSpawner, 'create_unit_extensions', function (func, self, world, unit, unit_template_name, extension_init_data)
     replace_textures(unit)
     return func(self, world, unit, unit_template_name, extension_init_data)
+end)
+
+-- mod:hook(Unit, "animation_event", function( func, self, event) 
+--     mod:echo(tostring(self)..tostring(event))
+--     return func(self, event)
+-- end)
+
+mod:hook(Unit, 'node', function(func, self, node)
+    if Unit.has_node(self, node) then
+        return func(self, node)
+    end
+    local new_node = Unit.get_data(self, 'node_replace')
+    return func(self, new_node)
 end)
 
 --prevents crash from billhook stagger

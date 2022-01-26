@@ -15,6 +15,20 @@ events = {
 	}
 	vortex_loop = {
 	}
+	move_fwd = {
+	}
+	dig_ground = {
+	}
+	dig_door = {
+	}
+	move_start_fwd = {
+	}
+	to_passive = {
+	}
+	hesitate = {
+	}
+	to_spear = {
+	}
 }
 layers = [
 	{
@@ -29,6 +43,88 @@ layers = [
 				]
 				loop_animation = true
 				name = "base/idle"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 0.5
+						event = "dig_door"
+						mode = "direct"
+						on_beat = ""
+						to = "base/dig_door"
+					}
+					{
+						blend_time = 0.5
+						event = "dig_ground"
+						mode = "direct"
+						on_beat = ""
+						to = "base/dig_ground"
+					}
+					{
+						blend_time = 1.5
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.5
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+				]
+				weights = [
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_porthole_affirmative_01"
+				]
+				loop_animation = true
+				name = "base/to_passive"
 				randomization_type = "every_loop"
 				root_driving = "ignore"
 				speed = "1"
@@ -63,6 +159,13 @@ layers = [
 						to = "base/to_combat"
 					}
 					{
+						blend_time = 0.5
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
 						blend_time = 0.2
 						event = "death"
 						mode = "direct"
@@ -80,8 +183,290 @@ layers = [
 				]
 				weights = [
 					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_porthole_affirmative_01"
+				]
+				loop_animation = true
+				name = "base/to_spear"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 1.5
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.5
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
 					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_porthole_affirmative_01"
+				]
+				loop_animation = true
+				name = "base/hesitate"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 0.5
+						event = "hesitate"
+						mode = "direct"
+						on_beat = ""
+						to = "base/hesitate"
+					}
+					{
+						blend_time = 1.5
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.5
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
 					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_porthole_affirmative_01"
+				]
+				loop_animation = true
+				name = "base/dig_ground"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 0.5
+						event = "dig_door"
+						mode = "direct"
+						on_beat = ""
+						to = "base/dig_door"
+					}
+					{
+						blend_time = 1.5
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.5
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
+					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_porthole_affirmative_01"
+				]
+				loop_animation = false
+				name = "base/dig_door"
+				//randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 0.5
+						event = "dig_ground"
+						mode = "direct"
+						on_beat = ""
+						to = "base/dig_ground"
+					}
+					{
+						blend_time = 1.5
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
 					"1.0"
 				]
 			}
@@ -106,6 +491,20 @@ layers = [
 					}
 					{
 						blend_time = 0.2
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.2
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.2
 						event = "death"
 						mode = "direct"
 						on_beat = ""
@@ -127,6 +526,165 @@ layers = [
 			}
 			{
 				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_01",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_02",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_03",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_04",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_05",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_06"
+				]
+				loop_animation = true
+				name = "base/move_fwd"
+				randomization_type = "on_entry"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.2
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
+						blend_time = 0.2
+						event = "move_start_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_start_fwd"
+					}
+					{
+						blend_time = 0.5
+						event = "dig_door"
+						mode = "direct"
+						on_beat = ""
+						to = "base/dig_door"
+					}
+					{
+						blend_time = 0.5
+						event = "dig_ground"
+						mode = "direct"
+						on_beat = ""
+						to = "base/dig_ground"
+					}
+					{
+						blend_time = 0.2
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.2
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.2
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_01",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_02",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_03",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_04",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_05",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_run_06"
+				]
+				loop_animation = true
+				name = "base/move_start_fwd"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.2
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
+					}
+					{
+						blend_time = 0.2
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.2
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.2
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+				]
+			}
+			{
+				animations = [
 					"units/squig_herd/anims/grn_squig_herd_01__cam_rp2_combat_idle_03",
 					"units/squig_herd/anims/grn_squig_herd_01__cam_rp2_combat_idle_04"
 				]
@@ -138,11 +696,39 @@ layers = [
 				state_type = "regular"
 				transitions = [
 					{
-						blend_time = 0.2
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 1.5
 						event = "idle"
 						mode = "direct"
 						on_beat = ""
 						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.5
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
 					}
 					{
 						blend_time = 0.2
@@ -177,11 +763,39 @@ layers = [
 				state_type = "regular"
 				transitions = [
 					{
-						blend_time = 0.2
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 1.5
 						event = "idle"
 						mode = "direct"
 						on_beat = ""
 						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.5
+						event = "move_fwd"
+						mode = "direct"
+						on_beat = ""
+						to = "base/move_fwd"
 					}
 					{
 						blend_time = 0.2
@@ -204,18 +818,18 @@ layers = [
 				]
 			}
 			{
-				//animations = [
-				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_death_01",
-				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_death_02",
-				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_01",
-				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_02"
-				//]
-				//randomization_type = "every_loop"
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_death_01",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_death_02",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_01",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_02"
+				]
+				randomization_type = "every_loop"
 				name = "base/death"
-				//loop_animation = false
-				ragdoll = "ragdoll"
-				state_type = "ragdoll"
-				//state_type = "regular"
+				loop_animation = false
+				//ragdoll = "ragdoll"
+				//state_type = "ragdoll"
+				state_type = "regular"
 				transitions = [
 					{
 						blend_time = 0.2
@@ -239,12 +853,12 @@ layers = [
 						to = "base/death"
 					}
 				]
-				//weights = [
-				//	"1.0"
-				//	"1.0"
-				//	"1.0"
-				//	"1.0"
-				//]
+				weights = [
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+				]
 			}				
 		]
 	}

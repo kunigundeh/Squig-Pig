@@ -1,0 +1,9 @@
+bones = "units/squig_herd/grn_squig_herd_01"
+tolerance = {
+	"" = [
+		0.01
+		0.01
+		false
+		false
+	]
+}
