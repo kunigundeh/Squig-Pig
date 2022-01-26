@@ -113,7 +113,7 @@ local function spawn_package_to_player (package_name)
 	return nil
 end
 
-mod:command("spawn_squig", "spawns the squig model without being linked to ai", function()
+mod:command("spawn_squig", "spawns the squig model without being linked to ai\nthis model can cause crashes", function()
     local unit = spawn_package_to_player("units/squig_herd/grn_squig_herd_01")
     replace_textures(unit)
 end)
