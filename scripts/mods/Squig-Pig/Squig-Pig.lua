@@ -80,3 +80,43 @@ mod:hook(UnitSpawner, 'create_unit_extensions', function (func, self, world, uni
     replace_textures(unit)
     return func(self, world, unit, unit_template_name, extension_init_data)
 end)
+
+--prevents crash from billhook stagger
+local unit_node = Unit.node
+local unit_world_position = Unit.world_position
+ActionSweep.check_precision_target = function (self, owner_unit, owner_player, dedicated_target_range, check_distance, weapon_furthest_point)
+	local current_target = self._precision_target_unit
+
+	if not AiUtils.unit_alive(current_target) then
+		return nil
+	end
+
+	local first_person_extension = ScriptUnit.extension(owner_unit, "first_person_system")
+
+	first_person_extension:disable_rig_movement()
+
+	local pos = first_person_extension:current_position()
+	local rot = first_person_extension:current_rotation()
+	local direction = Quaternion.forward(rot)
+	local node = "j_spine"
+    --crash is caused by node being hard coded to j_spine
+    if not Unit.has_node(current_target, node) then
+        node = Unit.get_data(current_target, 'node_replace')
+    end
+
+	local target_position = unit_world_position(current_target, unit_node(current_target, node))
+	local good_target = false
+	local player_to_target_vector = target_position - pos
+	local player_to_target_distance = Vector3.length(player_to_target_vector)
+	local player_to_target_unit_dir = Vector3.normalize(player_to_target_vector)
+	local dot = Vector3.dot(player_to_target_unit_dir, direction)
+	local target_health_extension = ScriptUnit.extension(current_target, "health_system")
+
+	if dot < 0.9 or dedicated_target_range < player_to_target_distance then
+		good_target = false
+	elseif target_health_extension:is_alive() then
+		good_target = true
+	end
+
+	return (good_target and current_target) or nil
+end
