@@ -1,0 +1,23 @@
+mod = [
+	"Squig-Pig"
+]
+
+package = [
+	"resource_packages/Squig-Pig/Squig-Pig"
+]
+
+lua = [
+	"scripts/mods/Squig-Pig/*"
+]
+
+unit = [
+  "units/*"
+]
+
+material = [
+  "materials/*"
+]  
+
+texture = [
+  "textures/*"
+] 

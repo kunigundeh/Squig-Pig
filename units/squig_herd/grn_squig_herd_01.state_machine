@@ -1,0 +1,317 @@
+
+bones = "units/squig_herd/grn_squig_herd_01"
+events = {
+	death = {
+	}
+	hit_reaction = {
+	}
+	idle = {
+	}
+	ragdoll = {
+	}
+	to_combat = {
+	}
+	alerted = {
+	}
+	vortex_loop = {
+	}
+}
+layers = [
+	{
+		default_state = "base/idle"
+		states = [
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_idle_01",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_idle_02",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_idle_03",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_idle_04"
+				]
+				loop_animation = true
+				name = "base/idle"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.5
+						event = "alerted"
+						mode = "direct"
+						on_beat = ""
+						to = "base/alerted"
+					}
+					{
+						blend_time = 1.5
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.5
+						event = "vortex_loop"
+						mode = "direct"
+						on_beat = ""
+						to = "base/vortex_loop"
+					}
+					{
+						blend_time = 0.5
+						event = "to_combat"
+						mode = "direct"
+						on_beat = ""
+						to = "base/to_combat"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
+					"1.0"
+					"1.0"
+					"1.0"
+					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_01",
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_02"
+				]
+				loop_animation = false
+				name = "base/vortex_loop"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.2
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
+					"1.0"
+					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__cam_rp2_combat_idle_03",
+					"units/squig_herd/anims/grn_squig_herd_01__cam_rp2_combat_idle_04"
+				]
+				loop_animation = true
+				name = "base/to_combat"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.2
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
+					"1.0"
+					"1.0"
+				]
+			}
+			{
+				animations = [
+					"units/squig_herd/anims/grn_squig_herd_01__rp2_combat_ready_01"
+				]
+				loop_animation = false
+				name = "base/alerted"
+				randomization_type = "every_loop"
+				root_driving = "ignore"
+				speed = "1"
+				state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.2
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					
+				]
+				weights = [
+					"1.0"
+				]
+			}
+			{
+				//animations = [
+				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_death_01",
+				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_death_02",
+				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_01",
+				//	"units/squig_herd/anims/grn_squig_herd_01__rp2_stand_front_death_02"
+				//]
+				//randomization_type = "every_loop"
+				name = "base/death"
+				//loop_animation = false
+				ragdoll = "ragdoll"
+				state_type = "ragdoll"
+				//state_type = "regular"
+				transitions = [
+					{
+						blend_time = 0.2
+						event = "idle"
+						mode = "direct"
+						on_beat = ""
+						to = "base/idle"
+					}
+					{
+						blend_time = 0.2
+						event = "death"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+					{
+						blend_time = 0.2
+						event = "ragdoll"
+						mode = "direct"
+						on_beat = ""
+						to = "base/death"
+					}
+				]
+				//weights = [
+				//	"1.0"
+				//	"1.0"
+				//	"1.0"
+				//	"1.0"
+				//]
+			}				
+		]
+	}
+]
+ragdolls = {
+	ragdoll = {
+		actors = [
+			"head_0",
+			"head_1",
+			"eye_left_0",
+			"eye_right_0",
+			"eyebrow_left_0",
+			"eyebrow_right_0",
+			"eyelid_lower_left_0",
+			"eyelid_lower_right_0",
+			"eyelid_upper_left_0",
+			"eyelid_upper_right_0",
+			"lip_corner_upper_left_0",
+			"lip_corner_upper_right_0",
+			"lip_upper_left_0",
+			"lip_upper_middle_0",
+			"lip_upper_right_0",
+			"nose_0",
+			"head_armour_flap_left_0",
+			"head_armour_flap_right_0",
+			"saddle_ring_0",
+			"jaw_0",
+			"saddle_ring_0.001",
+			"lip_corner_lower_right_0",
+			"lip_lower_left_0",
+			"lip_lower_middle_0",
+			"lip_lower_right_0",
+			"tongue_0",
+			"tongue_1",
+			"tongue_2",
+			"tongue_3",
+			"tongue_4",
+			"tongue_5",
+			"leg_left_0",
+			"leg_left_1",
+			"leg_left_2",
+			"leg_left_3",
+			"toe_inner_left_0",
+			"toe_inner_left_1",
+			"toe_middle_left_0",
+			"toe_middle_left_1",
+			"toe_outer_left_0",
+			"toe_outer_left_1",
+			"leg_left_0_armour_0",
+			"leg_right_0",
+			"leg_right_1",
+			"leg_right_2",
+			"leg_right_3",
+			"toe_inner_right_0",
+			"toe_inner_right_1",
+			"toe_middle_right_0",
+			"toe_middle_right_1",
+			"toe_outer_right_0",
+			"toe_outer_right_1",
+			"leg_right_0_armour_0",
+			"tail_0",
+			"tail_1"
+		]
+		keyframed = [
+		]
+	}
+}
+variables = {
+	move_speed = 1
+}
