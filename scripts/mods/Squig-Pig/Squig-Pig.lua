@@ -65,6 +65,30 @@ Breeds.critter_rat["hit_zones"]  = {
     }
 }
 
+-- Breeds.skaven_slave["base_unit"] = unit_path
+-- Breeds.skaven_slave["hit_zones"]  = {
+--     neck = {
+--         prio = 1,
+--         actors = {
+--             "c_head"
+           
+--         }
+--     },
+--     torso = {
+--         prio = 2,
+--         actors = {
+--             "c_head"
+--         },
+--         push_actors = {
+--             "head_0"
+--         }
+--     },
+--     full = {
+--         prio = 3,
+--         actors = {}
+--     }
+-- }
+
 
 local function replace_textures(unit)
     if Unit.has_data(unit, "mat_to_use") then

@@ -58,7 +58,9 @@ bones = [
     "tail_1"
 ]
 
+//bone lods should not exceed your total bones
 lod_levels = [
+    57
 	47
-	27
+    37
 ]
