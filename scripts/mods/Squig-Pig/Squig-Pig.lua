@@ -19,6 +19,7 @@ NetworkLookup.husks[unit_path] = num_husk
 
 mod:dofile("scripts/mods/Squig-Pig/breeds/breed_squig")
 mod:dofile("scripts/settings/breeds")
+mod:dofile("scripts/mods/Squig-Pig/settings/ai_inventory")
 -- mod:dofile("scripts/managers/performance/performance_manager")
 -- mod:dofile("scripts/managers/conflict_director/conflict_director")
 
@@ -36,30 +37,6 @@ end
 NetworkLookup.breeds = create_lookups({}, Breeds)
 
 Breeds.greenskin_squig.name = "critter_rat"
-
--- Breeds.critter_pig["base_unit"] = unit_path
--- Breeds.critter_pig["hit_zones"]  = {
---     neck = {
---         prio = 1,
---         actors = {
---             "c_head"
-           
---         }
---     },
---     torso = {
---         prio = 2,
---         actors = {
---             "c_head"
---         },
---         push_actors = {
---             "head_0"
---         }
---     },
---     full = {
---         prio = 3,
---         actors = {}
---     }
--- }
 
 Breeds.critter_rat["base_unit"] = unit_path
 Breeds.critter_rat["hit_zones"]  = {
@@ -85,6 +62,32 @@ Breeds.critter_rat["hit_zones"]  = {
     }
 }
 
+Breeds.critter_pig["base_unit"] = unit_path
+Breeds.critter_pig["hit_zones"]  = {
+    neck = {
+        prio = 1,
+        actors = {
+            "c_head"
+           
+        }
+    },
+    torso = {
+        prio = 2,
+        actors = {
+            "c_head"
+        },
+        push_actors = {
+            "head_0"
+        }
+    },
+    full = {
+        prio = 3,
+        actors = {}
+    }
+}
+
+-- Breeds.skaven_slave['default_inventory_template'] = {'squig'}
+-- Breeds.skaven_slave['opt_default_inventory_template'] = {'squig'}
 -- Breeds.skaven_slave["base_unit"] = unit_path
 -- Breeds.skaven_slave["hit_zones"]  = {
 --     neck = {

@@ -4,7 +4,7 @@ local squig_data = {
 	run_speed = 6,
 	exchange_order = 1,
 	flingable = false,
-	has_inventory = false,
+	has_inventory = true,
 	perception = "perception_regular",
 	not_bot_target = true,
 	animation_sync_rpc = "rpc_sync_anim_state_1",
@@ -18,7 +18,8 @@ local squig_data = {
 	bone_lod_level = 1,
 	hit_effect_template = "HitEffectsCritterRat",
 	radius = 1,
-	unit_template = "ai_unit_critter",
+	--unit_template = "ai_unit_critter",
+    unit_template = "ai_unit_clan_rat",
 	perception_previous_attacker_stickyness_value = 0,
 	race = "critter",
 	no_autoaim = true,
@@ -32,9 +33,12 @@ local squig_data = {
     base_unit = "units/squig_herd/grn_squig_herd_01",
 	threat_value = 0,
 	ignore_activate_unit = true,
+    slot_template = "skaven_horde",
+    default_inventory_template = {'squig'},
+	opt_default_inventory_template = {'squig'},
 	size_variation_range = {
-		0.9,
-		1.1
+		0.3,
+		3.1
 	},
 	animation_merge_options = {
 		idle_animation_merge_options = {},
@@ -151,7 +155,7 @@ BreedActions.greenskin_squig = {
 		}
 	},
 	look_for_players = {
-		anim_event = "idle",
+		anim_event = "to_combat",
 		despawn_radius = 30,
 		anim_length = 4,
 		look_time = 2
