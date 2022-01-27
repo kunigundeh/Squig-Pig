@@ -35,45 +35,7 @@ local function create_lookups(lookup, hashtable)
 end
 NetworkLookup.breeds = create_lookups({}, Breeds)
 
-
-
-
-
-
-local squig_breed_name = "resource_packages/breeds/greenskin_squig"
-local package_path = 'resource_packages/breeds/greenskin_squig'--"resource_packages/Squig-Pig/Squig-Pig"
-mod:hook(PackageManager, "load",
-         function(func, self, package_name, reference_name, callback,
-                  asynchronous, prioritize)
-    if package_name == squig_breed_name then
-        return func(self, unit_path, reference_name, callback, asynchronous,
-             prioritize)
-    end
-	return func(self, package_name, reference_name, callback, asynchronous,
-             prioritize)
-end)
-
-mod:hook(PackageManager, "unload",
-         function(func, self, package_name, reference_name)
-    if package_name == squig_breed_name then
-        return func(self, unit_path, reference_name)
-    end
-	return func(self, package_name, reference_name)
-end)
-
-mod:hook(PackageManager, "has_loaded",
-         function(func, self, package, reference_name)
-    if (package == squig_breed_name) then
-        return true
-    end
-	
-    return func(self, package, reference_name)
-end)
-
-
-
-
-
+Breeds.greenskin_squig.name = "critter_rat"
 
 -- Breeds.critter_pig["base_unit"] = unit_path
 -- Breeds.critter_pig["hit_zones"]  = {
