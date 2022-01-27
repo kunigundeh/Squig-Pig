@@ -17,64 +17,6 @@ NetworkLookup.husks[unit_path] = num_husk
 
 
 
-mod:dofile("scripts/mods/Squig-Pig/breeds/breed_squig")
-mod:dofile("scripts/settings/breeds")
--- mod:dofile("scripts/managers/performance/performance_manager")
--- mod:dofile("scripts/managers/conflict_director/conflict_director")
-
-
-local function create_lookups(lookup, hashtable)
-	local i = #lookup
-
-	for key, _ in pairs(hashtable) do
-		i = i + 1
-		lookup[i] = key
-	end
-
-	return lookup
-end
-NetworkLookup.breeds = create_lookups({}, Breeds)
-
-
-
-
-
-
-local squig_breed_name = "resource_packages/breeds/greenskin_squig"
-local package_path = 'resource_packages/breeds/greenskin_squig'--"resource_packages/Squig-Pig/Squig-Pig"
-mod:hook(PackageManager, "load",
-         function(func, self, package_name, reference_name, callback,
-                  asynchronous, prioritize)
-    if package_name == squig_breed_name then
-        return func(self, unit_path, reference_name, callback, asynchronous,
-             prioritize)
-    end
-	return func(self, package_name, reference_name, callback, asynchronous,
-             prioritize)
-end)
-
-mod:hook(PackageManager, "unload",
-         function(func, self, package_name, reference_name)
-    if package_name == squig_breed_name then
-        return func(self, unit_path, reference_name)
-    end
-	return func(self, package_name, reference_name)
-end)
-
-mod:hook(PackageManager, "has_loaded",
-         function(func, self, package, reference_name)
-    if (package == squig_breed_name) then
-        return true
-    end
-	
-    return func(self, package, reference_name)
-end)
-
-
-
-
-
-
 -- Breeds.critter_pig["base_unit"] = unit_path
 -- Breeds.critter_pig["hit_zones"]  = {
 --     neck = {
@@ -178,25 +120,23 @@ local function replace_textures(unit)
         print(color)
         print(color_slot)
         print(unit)
-        local num_meshes = Unit.num_meshes(unit)
-        for index, mat_slot in pairs(mat_slots) do 
+        for _,mat_slot in pairs(mat_slots) do 
             Unit.set_material(unit, mat_slot, mat)
-            for i = 0, num_meshes - 1, 1 do
-                local mesh = Unit.mesh(unit, i)
-                local num_mats = Mesh.num_materials(mesh)
-                for j = 0, num_mats - 1, 1 do
-                    local mat = Mesh.material(mesh, j)
-    
-                    
-    
-                    Material.set_texture(mat, color_slot, colors[index])
-                    Material.set_texture(mat, norm_slot, normals[index])
-                    Material.set_texture(mat, gloss_slot, glosses[index])               
-                end
+        end
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            local mesh = Unit.mesh(unit, i)
+            local num_mats = Mesh.num_materials(mesh)
+            for j = 0, num_mats - 1, 1 do
+                local mat = Mesh.material(mesh, j)
+
+                for k,
+
+                Material.set_texture(mat, color_slot, color)
+                Material.set_texture(mat, norm_slot, normal)
+                Material.set_texture(mat, gloss_slot, gloss)               
             end
         end
-        
-        
     end 
 end
 
@@ -280,15 +220,3 @@ ActionSweep.check_precision_target = function (self, owner_unit, owner_player, d
 
 	return (good_target and current_target) or nil
 end
-
---this enables the breed with creature spawner settings
-local spawn_mod = get_mod("CreatureSpawner")
-
-local add_spawn_catagory = {
-    greenskin_squig = {
-        "misc",
-    }
-}
-table.merge(spawn_mod.unit_categories, table)
-breed_name = 'greenskin_squig'
-table.insert(spawn_mod["all_units"], breed_name)

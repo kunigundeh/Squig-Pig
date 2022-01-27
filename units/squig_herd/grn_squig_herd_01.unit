@@ -3,12 +3,20 @@ materials = {
 }
 
 data = {
-    mat_slot = "grn_squig_herd_01"
+    mat_slots = {
+        slot1 = "grn_squig_herd_01",
+    }
     mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p"
     
-    color = "textures/squig_herd/grn_squig_body_01_diffuse"
-    normal = "textures/squig_herd/grn_squig_body_01_normal"
-    gloss = "textures/squig_herd/grn_squig_body_01_gloss_map"
+    colors = {
+        slot1 = "textures/squig_herd/grn_squig_body_01_diffuse"
+    }
+    normals = {
+        slot1 = "textures/squig_herd/grn_squig_body_01_normal"
+    }
+    glosses = {
+        slot1 = "textures/squig_herd/grn_squig_body_01_gloss_map"
+    }
 
     color_slot = "texture_map_c0ba2942" 
     norm_slot = "texture_map_0205ba86"
