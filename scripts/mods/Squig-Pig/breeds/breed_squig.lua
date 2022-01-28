@@ -1,18 +1,29 @@
 local squig_data = {
     detection_radius = 10,
-	target_selection = "pick_closest_target",
+	target_selection = "pick_closest_target_with_spillover",
 	run_speed = 4.5,
 	exchange_order = 1,
+    leave_walk_distance = 1,
+    enter_walk_distance = 0.1,
+    hit_mass_count = 1,
+    smart_targeting_width = 0.1,
+    smart_targeting_outer_width = 0.5,
+    passive_walk_speed = 2,
+	horde_behavior = "horde_rat",
+    use_backstab_vo = true,
+    smart_object_template = "default_clan_rat",
+    patrol_passive_target_selection = "patrol_passive_target_selection",
+    patrol_detection_radius = 10,
 	flingable = false,
 	has_inventory = true,
 	perception = "perception_regular",
 	not_bot_target = true,
-	animation_sync_rpc = "rpc_sync_anim_state_1",
+	animation_sync_rpc = "rpc_sync_anim_state_7",
 	aoe_radius = 0.1,
 	poison_resistance = 70,
 	debug_spawn_category = "Misc",
 	aoe_height = 0.1,
-	cannot_far_path = true,
+	--cannot_far_path = true,
 	walk_speed = 3,
 	hit_reaction = "ai_default",
 	bone_lod_level = 1,
@@ -20,26 +31,26 @@ local squig_data = {
 	radius = 1,
 	--unit_template = "ai_unit_critter",
     unit_template = "ai_unit_clan_rat",
-	perception_previous_attacker_stickyness_value = 0,
+	perception_previous_attacker_stickyness_value = -12.5,
+    player_locomotion_constrain_radius = 0.7,
 	race = "critter",
 	no_autoaim = true,
 	death_reaction = "ai_default",
 	armor_category = 1,
 	weapon_reach = 2,
 	vortexable = false,
-	disable_local_hit_reactions = true,
-	--behavior = "critter_rat",
-    behavior = "greenskin_squig",
-	--base_unit = "units/beings/critters/chr_critter_common_rat/chr_critter_common_rat",
+	--disable_local_hit_reactions = true,
+	behavior = "slave_rat",
+    --behavior = "greenskin_squig",
     base_unit = "units/squig_herd/grn_squig_herd_01",
 	threat_value = 1,
-	ignore_activate_unit = true,
+	--ignore_activate_unit = true,
     slot_template = "skaven_horde",
     default_inventory_template = {'squig'},
 	opt_default_inventory_template = {'squig'},
 	size_variation_range = {
-		0.75,
-		1.25
+		0.95,
+		1.05
 	},
 	animation_merge_options = {
 		idle_animation_merge_options = {},
@@ -105,10 +116,10 @@ BreedActions.greenskin_squig = {
 		cooldown = -1,
 		action_weight = 1,
 		start_anims_name = {
-			bwd = "run",
-			fwd = "run",
-			left = "run",
-			right = "run"
+			bwd = "move_fwd",
+			fwd = "move_fwd",
+			left = "move_fwd",
+			right = "move_fwd"
 		},
 		start_anims_data = {
 			alerted_fwd = {},
@@ -159,10 +170,10 @@ BreedActions.greenskin_squig = {
 		cooldown = -1,
 		action_weight = 1,
 		start_anims_name = {
-			bwd = "move_start_fwd",
+			bwd = "move_start_bwd",
 			fwd = "move_start_fwd",
-			left = "move_start_fwd",
-			right = "move_start_fwd"
+			left = "move_start_left",
+			right = "move_start_right"
 		},
 		start_anims_data = {
 			move_start_fwd = {},
@@ -187,7 +198,7 @@ BreedActions.greenskin_squig = {
 		player_push_speed = 3,
 		attack_intensity_type = "normal",
 		action_weight = 1,
-		move_anim = "move_fwd",
+		move_anim = "move_start_fwd",
 		difficulty_attack_intensity = AttackIntensityPerDifficulty,
 		default_attack = {
 			anims = {
@@ -307,6 +318,224 @@ BreedActions.greenskin_squig = {
 		despawn_radius = 30,
 		anim_length = 4,
 		look_time = 2
+	},
+    stagger = {
+		scale_animation_speeds = true,
+		imation_speeds = true,
+		custom_enter_function = function (unit, blackboard, t, action)
+			if blackboard.stagger_type == 3 then
+				blackboard.stagger_immune_time = t + 1.25
+				blackboard.heavy_stagger_immune_time = t + 0.5
+			elseif blackboard.stagger_type == 6 then
+				blackboard.stagger_immune_time = t + 2.5
+				blackboard.heavy_stagger_immune_time = t + 2
+			end
+
+			local stagger_anims = action.stagger_anims[blackboard.stagger_type]
+
+			return stagger_anims, "idle"
+		end,
+		stagger_anims = {
+			{
+				fwd = {
+					"stun_bwd_sword"
+				},
+				bwd = {
+					"stun_fwd_sword"
+				},
+				left = {
+					"stun_left_sword",
+					"stun_left_sword_2",
+					"stun_left_sword_3"
+				},
+				right = {
+					"stun_right_sword",
+					"stun_right_sword_2",
+					"stun_right_sword_3"
+				},
+				dwn = {
+					"stun_down"
+				}
+			},
+			{
+				fwd = {
+					"stagger_fwd",
+					"stagger_fwd_2",
+					"stagger_fwd_3",
+					"stagger_fwd_4"
+				},
+				bwd = {
+					"stagger_bwd",
+					"stagger_bwd_2",
+					"stagger_bwd_3",
+					"stagger_bwd_4",
+					"stagger_bwd_5"
+				},
+				left = {
+					"stagger_left",
+					"stagger_left_2",
+					"stagger_left_3",
+					"stagger_left_4"
+				},
+				right = {
+					"stagger_right",
+					"stagger_right_2",
+					"stagger_right_3",
+					"stagger_right_4"
+				},
+				dwn = {
+					"stun_down"
+				}
+			},
+			{
+				fwd = {
+					"stagger_fwd"
+				},
+				bwd = {
+					"stagger_bwd_fall",
+					"stagger_bwd_fall_2",
+					"stagger_bwd_heavy",
+					"stagger_bwd_heavy_2",
+					"stagger_bwd_heavy_3",
+					"stagger_bwd_heavy_4"
+				},
+				left = {
+					"stagger_left_heavy",
+					"stagger_left_heavy_2",
+					"stagger_left_heavy_3",
+					"stagger_left_heavy_4",
+					"stagger_left_heavy_5"
+				},
+				right = {
+					"stagger_right_heavy",
+					"stagger_right_heavy_2",
+					"stagger_right_heavy_3",
+					"stagger_right_heavy_4",
+					"stagger_right_heavy_5"
+				},
+				dwn = {
+					"stun_down"
+				}
+			},
+			{
+				fwd = {
+					"stun_fwd_ranged_light",
+					"stun_fwd_ranged_light_2"
+				},
+				bwd = {
+					"stun_bwd_ranged_light",
+					"stun_bwd_ranged_light_2"
+				},
+				left = {
+					"stun_left_ranged_light",
+					"stun_left_ranged_light_2"
+				},
+				right = {
+					"stun_right_ranged_light",
+					"stun_right_ranged_light_2"
+				}
+			},
+			{
+				fwd = {
+					"stagger_fwd_stab"
+				},
+				bwd = {
+					"stagger_bwd_stab",
+					"stagger_bwd_stab_2"
+				},
+				left = {
+					"stagger_left_stab"
+				},
+				right = {
+					"stagger_right_stab"
+				}
+			},
+			{
+				fwd = {
+					"stagger_fwd_exp",
+					"stagger_fwd_exp_2"
+				},
+				bwd = {
+					"stagger_bwd_exp",
+					"stagger_bwd_exp_2"
+				},
+				left = {
+					"stagger_left_exp",
+					"stagger_left_exp_2"
+				},
+				right = {
+					"stagger_right_exp",
+					"stagger_right_exp_2"
+				}
+			},
+			{
+				fwd = {
+					"stagger_short_fwd",
+					"stagger_short_fwd_2"
+				},
+				bwd = {
+					"stagger_short_bwd",
+					"stagger_short_bwd_2",
+					"stagger_short_bwd_3",
+					"stagger_short_bwd_4",
+					"stagger_short_bwd_5"
+				},
+				left = {
+					"stun_left_sword",
+					"stun_left_sword_2",
+					"stun_left_sword_3",
+					"stagger_short_left",
+					"stagger_short_left_2"
+				},
+				right = {
+					"stun_right_sword",
+					"stun_right_sword_2",
+					"stun_right_sword_3",
+					"stagger_short_right",
+					"stagger_short_right_2"
+				},
+				dwn = {
+					"stun_down"
+				}
+			},
+			{
+				fwd = {},
+				bwd = {},
+				left = {},
+				right = {}
+			},
+			{
+				fwd = {
+					"stagger_fwd_exp",
+					"stagger_fwd_exp_2"
+				},
+				bwd = {
+					"stagger_bwd_fall",
+					"stagger_bwd_fall_2",
+					"stagger_bwd_heavy",
+					"stagger_bwd_heavy_2",
+					"stagger_bwd_heavy_3",
+					"stagger_bwd_heavy_4"
+				},
+				left = {
+					"stagger_left_heavy",
+					"stagger_left_heavy_2",
+					"stagger_left_heavy_3",
+					"stagger_left_heavy_4",
+					"stagger_left_heavy_5"
+				},
+				right = {
+					"stagger_right_heavy",
+					"stagger_right_heavy_2",
+					"stagger_right_heavy_3",
+					"stagger_right_heavy_4",
+					"stagger_right_heavy_5"
+				},
+				dwn = {
+					"stun_down"
+				}
+			}
+		}
 	},
 	idle = {}
 }
