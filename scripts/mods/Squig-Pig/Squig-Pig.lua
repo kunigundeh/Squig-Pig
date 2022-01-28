@@ -22,7 +22,8 @@ mod:dofile("scripts/settings/breeds")
 mod:dofile("scripts/mods/Squig-Pig/settings/ai_inventory")
 -- mod:dofile("scripts/managers/performance/performance_manager")
 -- mod:dofile("scripts/managers/conflict_director/conflict_director")
-
+mod:dofile("scripts/mods/Squig-Pig/AI/squig_behavior")
+mod:dofile("scripts/mods/Squig-Pig/AI/bt_selector_squig")
 
 local function create_lookups(lookup, hashtable)
 	local i = #lookup
