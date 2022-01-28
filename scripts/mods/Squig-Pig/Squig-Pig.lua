@@ -22,8 +22,29 @@ mod:dofile("scripts/settings/breeds")
 mod:dofile("scripts/mods/Squig-Pig/settings/ai_inventory")
 -- mod:dofile("scripts/managers/performance/performance_manager")
 -- mod:dofile("scripts/managers/conflict_director/conflict_director")
-mod:dofile("scripts/mods/Squig-Pig/AI/squig_behavior")
 mod:dofile("scripts/mods/Squig-Pig/AI/bt_selector_squig")
+mod:dofile("scripts/mods/Squig-Pig/AI/squig_behavior")
+--mod:dofile("scripts/entity_systems/systems/behaviour/bt_minion")
+
+-- AISystem:create_all_trees()
+
+-- if true then
+-- 	for bt_name, bt_node in pairs(BreedBehaviors) do
+-- 		bt_node[1] = "BTSelector_" .. bt_name
+-- 		bt_node.name = bt_name .. "_GENERATED"
+-- 	end
+-- else
+-- 	for bt_name, bt_node in pairs(BreedBehaviors) do
+-- 		bt_node[1] = "BTSelector"
+-- 		bt_node.name = bt_name
+-- 	end
+-- end
+-- mod:hook(Unit, "animation_event", function(func, self, event)
+--     mod:echo(self)
+--     mod:echo(event)
+--     return func(self, event)
+-- end)
+
 
 local function create_lookups(lookup, hashtable)
 	local i = #lookup

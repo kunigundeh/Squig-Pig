@@ -1,0 +1,43 @@
+BreedBehaviors.greenskin_squig = {
+	"BTSelector",
+	{
+		"BTSpawningAction",
+		condition = "spawn",
+		name = "spawn"
+	},
+	{
+		"BTInVortexAction",
+		condition = "in_vortex",
+		name = "in_vortex"
+	},
+	{
+		"BTSmashDoorAction",
+		name = "smash_door",
+		condition = "at_door_smartobject",
+		action_data = BreedActions.greenskin_squig.smash_door
+	},
+	{
+		"BTSequence",
+		{
+			"BTClanRatFollowAction",
+			name = "follow",
+			action_data = BreedActions.greenskin_squig.follow
+		},
+		{
+			"BTCombatShoutAction",
+			name = "combat_shout",
+			action_data = BreedActions.greenskin_squig.combat_shout
+		},
+		condition = "in_combat",
+		name = "confirmed_player_sighting"
+        action_data = BreedActions.greenskin_squig.utility_action
+	},
+	{
+		"BTIdleAction",
+		name = "idle",
+		action_data = BreedActions.greenskin_squig.idle
+	},
+	name = "greenskin_squig"
+}
+
+return

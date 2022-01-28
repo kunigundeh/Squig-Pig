@@ -1,7 +1,7 @@
 local squig_data = {
     detection_radius = 10,
 	target_selection = "pick_closest_target",
-	run_speed = 6,
+	run_speed = 4.5,
 	exchange_order = 1,
 	flingable = false,
 	has_inventory = true,
@@ -13,7 +13,7 @@ local squig_data = {
 	debug_spawn_category = "Misc",
 	aoe_height = 0.1,
 	cannot_far_path = true,
-	walk_speed = 4,
+	walk_speed = 3,
 	hit_reaction = "ai_default",
 	bone_lod_level = 1,
 	hit_effect_template = "HitEffectsCritterRat",
@@ -32,14 +32,14 @@ local squig_data = {
     behavior = "greenskin_squig",
 	--base_unit = "units/beings/critters/chr_critter_common_rat/chr_critter_common_rat",
     base_unit = "units/squig_herd/grn_squig_herd_01",
-	threat_value = 0,
+	threat_value = 1,
 	ignore_activate_unit = true,
     slot_template = "skaven_horde",
     default_inventory_template = {'squig'},
 	opt_default_inventory_template = {'squig'},
 	size_variation_range = {
-		0.3,
-		3.1
+		0.75,
+		1.25
 	},
 	animation_merge_options = {
 		idle_animation_merge_options = {},
@@ -154,6 +154,153 @@ BreedActions.greenskin_squig = {
 			max_time_before_dig = 10,
 			min_time_before_dig = 5
 		}
+	},
+    follow = {
+		cooldown = -1,
+		action_weight = 1,
+		start_anims_name = {
+			bwd = "move_start_fwd",
+			fwd = "move_start_fwd",
+			left = "move_start_fwd",
+			right = "move_start_fwd"
+		},
+		start_anims_data = {
+			move_start_fwd = {},
+			move_start_bwd = {
+				dir = -1,
+				rad = math.pi
+			},
+			move_start_left = {
+				dir = 1,
+				rad = math.pi / 2
+			},
+			move_start_right = {
+				dir = -1,
+				rad = math.pi / 2
+			}
+		},
+		considerations = UtilityConsiderations.clan_rat_follow
+	},
+    normal_attack = {
+		damage_type = "cutting",
+		damage = 3,
+		player_push_speed = 3,
+		attack_intensity_type = "normal",
+		action_weight = 1,
+		move_anim = "move_fwd",
+		difficulty_attack_intensity = AttackIntensityPerDifficulty,
+		default_attack = {
+			anims = {
+				"attack_pounce"
+			},
+			damage_box_range = {
+				flat = 2,
+				up = 1.7,
+				down = -0.75
+			}
+		},
+		high_attack = {
+			z_threshold = 1.5,
+			anims = {
+				"attack_reach_up"
+			},
+			damage_box_range = {
+				flat = 1.5,
+				up = 3.8,
+				down = 0
+			}
+		},
+		mid_attack = {
+			z_threshold = -0.6,
+			flat_threshold = 1.5,
+			anims = {
+				"attack_pounce_down"
+			},
+			damage_box_range = {
+				flat = 2,
+				up = 1.7,
+				down = -2
+			}
+		},
+		low_attack = {
+			z_threshold = -0.6,
+			anims = {
+				"attack_reach_down"
+			},
+			damage_box_range = {
+				flat = 1,
+				up = 1.7,
+				down = -3
+			}
+		},
+		knocked_down_attack = {
+			z_threshold = 0.6,
+			anims = {
+				"attack_pounce_down"
+			},
+			damage_box_range = {
+				flat = 1,
+				up = 1.7,
+				down = -3
+			}
+		},
+		target_type_exceptions = {
+			poison_well = {
+				anims = "poison_well",
+				damage_box_range = {
+					flat = 2,
+					up = 1.7,
+					down = -0.75
+				}
+			}
+		},
+		difficulty_damage = BreedTweaks.difficulty_damage.skaven_horde_attack,
+		considerations = UtilityConsiderations.clan_rat_attack,
+		fatigue_type = BreedTweaks.fatigue_types.horde.normal_attack,
+		diminishing_damage = {},
+		difficulty_diminishing_damage = BreedTweaks.diminishing_damage_and_cooldown.horde,
+		dodge_window_start = BreedTweaks.dodge_windows.normal_attack,
+		dodge_window_duration = BreedTweaks.dodge_window_durations.normal_attack,
+		attack_directions = {
+			attack_pounce_down_3 = "left",
+			attack_move_2 = "left",
+			attack_reach_down_2 = "left",
+			attack_pounce_2 = "left",
+			attack_reach_up_3 = "right",
+			attack_move_1 = "right",
+			attack_reach_up_2 = "left",
+			attack_pounce_down = "left",
+			attack_move = "left",
+			attack_reach_down = "left",
+			attack_run = "left",
+			attack_pounce_down_2 = "right",
+			attack_reach_up_4 = "left",
+			attack_reach_up = "left",
+			attack_reach_down_3 = "right",
+			attack_pounce_4 = "right",
+			attack_pounce_3 = "right",
+			attack_pounce = "right"
+		},
+		attack_finished_duration = BreedTweaks.attack_finished_duration.skaven_horde
+	},
+    combat_shout = {
+		cooldown = -1,
+		shout_anim = "shout",
+		action_weight = 1,
+		considerations = UtilityConsiderations.clan_rat_shout
+	},
+    utility_action = {
+		fail_cooldown_blackboard_identifier = "attack_cooldown_at",
+		name = "utility_action",
+		fail_cooldown_name = "utility_fail_cooldown"
+	},
+    smash_door = {
+		unblockable = true,
+		name = "smash_door",
+		damage = 1,
+		damage_type = "cutting",
+		move_anim = "move_fwd",
+		attack_anim = "hesitate"
 	},
 	look_for_players = {
 		anim_event = "to_combat",
