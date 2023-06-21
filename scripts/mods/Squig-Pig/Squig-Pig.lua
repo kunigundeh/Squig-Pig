@@ -5,7 +5,7 @@ local mod = get_mod("Squig-Pig")
 
 Managers.package:load("units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p", "global")
 
-local unit_path = "units/squig_herd/grn_squig_herd_01"
+local unit_path = "units/archer/emp_archer_body_01"
 local num_inv = #NetworkLookup.inventory_packages
 local num_husk = #NetworkLookup.husks
 
@@ -17,7 +17,7 @@ NetworkLookup.husks[unit_path] = num_husk
 
 
 
-mod:dofile("scripts/mods/Squig-Pig/breeds/breed_squig")
+mod:dofile("scripts/mods/Squig-Pig/breeds/archer")
 mod:dofile("scripts/settings/breeds")
 mod:dofile("scripts/mods/Squig-Pig/settings/ai_inventory")
 -- mod:dofile("scripts/managers/performance/performance_manager")
@@ -58,7 +58,7 @@ local function create_lookups(lookup, hashtable)
 end
 NetworkLookup.breeds = create_lookups({}, Breeds)
 
-Breeds.greenskin_squig.name = "critter_rat"
+Breeds.archer.name = "critter_rat"
 
 Breeds.critter_rat["base_unit"] = unit_path
 Breeds.critter_rat["hit_zones"]  = {
@@ -209,6 +209,10 @@ mod:command("spawn_squig", "spawns the squig model without being linked to ai\nt
     local unit = spawn_package_to_player("units/squig_herd/grn_squig_herd_01")
     replace_textures(unit)
 end)
+mod:command("archer", "spawns the archer model without being linked to ai\nthis model can cause crashes", function()
+    local unit = spawn_package_to_player("units/archer/emp_archer_body_01")
+    replace_textures(unit)
+end)
 
 mod:hook(UnitSpawner, 'create_unit_extensions', function (func, self, world, unit, unit_template_name, extension_init_data)
     replace_textures(unit)
@@ -272,10 +276,10 @@ end
 local spawn_mod = get_mod("CreatureSpawner")
 
 local add_spawn_catagory = {
-    greenskin_squig = {
+    archer = {
         "misc",
     }
 }
 table.merge(spawn_mod.unit_categories, table)
-breed_name = 'greenskin_squig'
+breed_name = 'archer'
 table.insert(spawn_mod["all_units"], breed_name)
