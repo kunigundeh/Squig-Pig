@@ -1,0 +1,11 @@
+mod = [
+	"squig"
+]
+
+package = [
+	"resource_packages/squig/squig"
+]
+
+lua = [
+	"scripts/mods/squig/*"
+]
