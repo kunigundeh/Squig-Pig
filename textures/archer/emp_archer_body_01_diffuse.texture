@@ -1,6 +1,6 @@
 common = {
   input = {
-    filename = "textures/archer/emp_archer_body_01_base_colour"
+    filename = "textures/archer/emp_archer_body_01_diffuse"
   }
 
   output = {
@@ -17,3 +17,4 @@ common = {
     streamable = true
   }
 } 
+
