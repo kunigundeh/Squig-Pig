@@ -1,0 +1,194 @@
+actors = [
+    {
+        enabled = true
+        mass = 0
+        name = "c_head"
+        node = "c_head"
+        shapes = [
+            {
+                material = "default"
+                shape = "c_head"
+                template = "enemy_hit_box"
+                type = "sphere"
+            }
+        ]
+        template = "keyframed_no_collision"
+    }
+]
+
+movers = [
+	{
+		collision_filter = "filter_ai_mover"
+		height = 1.2
+		name = "mover"
+		radius = 1
+		slope_limit = 0.785398163397448
+	}
+]
+
+physx_scene = {
+	actors = {
+		root = {
+			enabled = false
+			shapes = {
+				j_headRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		head_0 = {
+			enabled = false
+			shapes = {
+				j_hipsRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		leg_left_0 = {
+			enabled = false
+			shapes = {
+				j_leftfootRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		leg_left_1 = {
+			enabled = false
+			shapes = {
+				j_leftforearmRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		leg_left_2 = {
+			enabled = false
+			shapes = {
+				j_lefthandRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		leg_left_3 = {
+			enabled = false
+			shapes = {
+				j_leftlegRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		toe_inner_left_0 = {
+			enabled = false
+			shapes = {
+				j_leftshoulderRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		toe_inner_left_1 = {
+			enabled = false
+			shapes = {
+				j_leftuplegRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		head_1 = {
+			enabled = false
+			shapes = {
+				j_neckRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		leg_right_0 = {
+			enabled = false
+			shapes = {
+				j_rightfootRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		leg_right_1 = {
+			enabled = false
+			shapes = {
+				j_rightforearmRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		j_righthand = {
+			enabled = false
+			shapes = {
+				j_righthandRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		leg_right_3 = {
+			enabled = false
+			shapes = {
+				j_rightlegRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		toe_inner_right_0 = {
+			enabled = false
+			shapes = {
+				j_rightshoulderRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		toe_inner_right_1 = {
+			enabled = false
+			shapes = {
+				j_rightuplegRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		jaw_0 = {
+			enabled = false
+			shapes = {
+				j_spineRigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		tail_0 = {
+			enabled = false
+			shapes = {
+				j_spine1RigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+		tail_1 = {
+			enabled = false
+			shapes = {
+				j_spine2RigidBody1Shape1 = {
+					material = "flesh"
+					template = "ragdoll"
+				}
+			}
+		}
+	}
+}
