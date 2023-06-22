@@ -5,22 +5,23 @@ materials = {
 data = {
     mat_slots = {
         slot1 = "emp_archer_body_01-mat",
-        slot2 = "emp_archer_body_01-mat.001",
-        slot3 = "emp_huntsman_quiver_01_mat.001",
-        slot4 = "emp_huntsman_quiver_01_mat"   
+         
     }
     mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p"
     
     colors = {
         slot1 = "textures/archer/emp_archer_body_01_diffuse"
+       
         
     }
     normals = {
         slot1 = "textures/archer/emp_archer_body_01_normal"
         
+        
     }
     glosses = {
-        slot1= "textures/archer/emp_archer_body_01_gloss_map"
+        slot1 = "textures/archer/emp_archer_body_01_gloss_map"
+       
 
     }
 
@@ -30,6 +31,12 @@ data = {
     norm_slot = "texture_map_0205ba86"
     gloss_slot = "texture_map_59cd86b9"
 
+    
+/*
+    color_slot = "texture_map_c0ba2942" 
+    norm_slot = "texture_map_59cd86b9"
+    gloss_slot = "texture_map_59cd86b9"
+*/
     breed = "critter_pig"
 
     randomize_tints = false
@@ -55,8 +62,8 @@ renderables = {
             surface_queries = false
             viewport_visible = true
         },
-        */
-        emp_archer_body_01.001 = {
+        *//*
+        emp_archer_body_01 = {
             always_keep = false
             culling = "bounding_volume"
             generate_uv_unwrap = false
@@ -64,7 +71,7 @@ renderables = {
             shadow_caster = true
             surface_queries = false
             viewport_visible = true
-        },
+        }, 
         emp_huntsman_quiver_01 = {
             always_keep = false
             culling = "bounding_volume"
@@ -83,7 +90,7 @@ renderables = {
             shadow_caster = true
             surface_queries = false
             viewport_visible = true
-        },
+        }, */
         // c_head and c_spine are just simple sphere meshes added for some vanilla raycast calls that look for these mesh nodes
     
          c_head = {

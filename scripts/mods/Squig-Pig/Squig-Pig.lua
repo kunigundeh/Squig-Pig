@@ -134,59 +134,59 @@ Breeds.critter_pig["hit_zones"]  = {
 --     }
 -- }
 
+]]
+-- local function replace_textures(unit)
+--     if Unit.has_data(unit, "mat_to_use") then
+--         local mat = Unit.get_data(unit, "mat_to_use")
 
-local function replace_textures(unit)
-    if Unit.has_data(unit, "mat_to_use") then
-        local mat = Unit.get_data(unit, "mat_to_use")
-
-        local mat_slots = {}
-        local colors = {}
-        local normals = {}
-        local glosses = {}
-        for i=1, 20, 1 do
-            if Unit.has_data(unit, "mat_slots", "slot"..tostring(i)) then 
-                mat_slots[i] = Unit.get_data(unit, "mat_slots", "slot"..tostring(i))
-            end
-            if Unit.has_data(unit, "colors", "slot"..tostring(i)) then 
-                colors[i] = Unit.get_data(unit, "colors", "slot"..tostring(i))
-            end
-            if Unit.has_data(unit, "normals", "slot"..tostring(i)) then 
-                normals[i] = Unit.get_data(unit, "normals", "slot"..tostring(i))
-            end
-            if Unit.has_data(unit, "glosses", "slot"..tostring(i)) then 
-                glosses[i] = Unit.get_data(unit, "glosses", "slot"..tostring(i))
-            end
-        end
+--         local mat_slots = {}
+--         local colors = {}
+--         local normals = {}
+--         local glosses = {}
+--         for i=1, 20, 1 do
+--             if Unit.has_data(unit, "mat_slots", "slot"..tostring(i)) then 
+--                 mat_slots[i] = Unit.get_data(unit, "mat_slots", "slot"..tostring(i))
+--             end
+--             if Unit.has_data(unit, "colors", "slot"..tostring(i)) then 
+--                 colors[i] = Unit.get_data(unit, "colors", "slot"..tostring(i))
+--             end
+--             if Unit.has_data(unit, "normals", "slot"..tostring(i)) then 
+--                 normals[i] = Unit.get_data(unit, "normals", "slot"..tostring(i))
+--             end
+--             if Unit.has_data(unit, "glosses", "slot"..tostring(i)) then 
+--                 glosses[i] = Unit.get_data(unit, "glosses", "slot"..tostring(i))
+--             end
+--         end
        
-        local color_slot = Unit.get_data(unit, "color_slot")
-        local norm_slot = Unit.get_data(unit, "norm_slot")
-        local gloss_slot = Unit.get_data(unit, "gloss_slot")
-        print(mat)
-        print(color)
-        print(color_slot)
-        print(unit)
-        local num_meshes = Unit.num_meshes(unit)
-        for index, mat_slot in pairs(mat_slots) do 
-            Unit.set_material(unit, mat_slot, mat)
-            for i = 0, num_meshes - 1, 1 do
-                local mesh = Unit.mesh(unit, i)
-                local num_mats = Mesh.num_materials(mesh)
-                for j = 0, num_mats - 1, 1 do
-                    local mat = Mesh.material(mesh, j)
+--         local color_slot = Unit.get_data(unit, "color_slot")
+--         local norm_slot = Unit.get_data(unit, "norm_slot")
+--         local gloss_slot = Unit.get_data(unit, "gloss_slot")
+--         print(mat)
+--         print(color)
+--         print(color_slot)
+--         print(unit)
+--         local num_meshes = Unit.num_meshes(unit)
+--         for index, mat_slot in pairs(mat_slots) do 
+--             Unit.set_material(unit, mat_slot, mat)
+--             for i = 0, num_meshes - 1, 1 do
+--                 local mesh = Unit.mesh(unit, i)
+--                 local num_mats = Mesh.num_materials(mesh)
+--                 for j = 0, num_mats - 1, 1 do
+--                     local mat = Mesh.material(mesh, j)
     
                     
     
-                    Material.set_texture(mat, color_slot, colors[index])
-                    Material.set_texture(mat, norm_slot, normals[index])
-                    Material.set_texture(mat, gloss_slot, glosses[index])               
-                end
-            end
-        end
+--                     Material.set_texture(mat, color_slot, colors[index])
+--                     Material.set_texture(mat, norm_slot, normals[index])
+--                     Material.set_texture(mat, gloss_slot, glosses[index])               
+--                 end
+--             end
+--         end
         
         
-    end 
-end
-
+--     end 
+-- end
+--[[
 local function spawn_package_to_player (package_name)
 	local player = Managers.player:local_player()
 	local world = Managers.world:world("level_world")
@@ -478,28 +478,33 @@ Breeds.critter_pig["hit_zones"]  = {
 --     end 
 -- end
 
--- local function spawn_package_to_player (package_name)
--- 	local player = Managers.player:local_player()
--- 	local world = Managers.world:world("level_world")
+--[[ local function spawn_package_to_player (package_name)
+	local player = Managers.player:local_player()
+	local world = Managers.world:world("level_world")
   
--- 	if world and player and player.player_unit then
--- 	  local player_unit = player.player_unit
+	if world and player and player.player_unit then
+	  local player_unit = player.player_unit
   
--- 	  local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
--- 	  local rotation = Unit.local_rotation(player_unit, 0)
--- 	  local unit = World.spawn_unit(world, package_name, position, rotation)
-  
--- 	  mod:chat_broadcast(#NetworkLookup.inventory_packages + 1)
--- 	  return unit
--- 	end
-  
--- 	return nil
--- end
+	  local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+	  local rotation = Unit.local_rotation(player_unit, 0)
+	--   local unit = World.spawn_unit(world, package_name, position, rotation)
 
--- mod:command("spawn_squig", "spawns the squig model without being linked to ai\nthis model can cause crashes", function()
---     local unit = spawn_package_to_player("units/squig_herd/grn_squig_herd_01")
---     replace_textures(unit)
--- end)
+    --   UnitSpawner.spawn_local_unit()
+
+      local unit = Managers.state.unit_spawner:spawn_local_unit(package_name, position, rotation)
+    --   Unit.animation_event(unit, "units/anims/hu1_bosw_stand_idle_05")	
+  
+	  mod:chat_broadcast(#NetworkLookup.inventory_packages + 1)
+	  return unit
+	end
+  
+	return nil
+end
+
+mod:command("spawn_squig", "spawns the squig model without being linked to ai\nthis model can cause crashes", function()
+    local unit = spawn_package_to_player("units/archer/emp_archer_body_01")
+    -- replace_textures(unit)
+end) ]]
 
 -- mod:hook(UnitSpawner, 'create_unit_extensions', function (func, self, world, unit, unit_template_name, extension_init_data)
 --     replace_textures(unit)
@@ -520,6 +525,7 @@ mod:hook(Unit, 'node', function(func, self, node)
 end)
 
 --prevents crash from billhook stagger
+
 local unit_node = Unit.node
 local unit_world_position = Unit.world_position
 ActionSweep.check_precision_target = function (self, owner_unit, owner_player, dedicated_target_range, check_distance, weapon_furthest_point)
