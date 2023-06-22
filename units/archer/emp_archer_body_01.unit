@@ -4,13 +4,12 @@ materials = {
 
 data = {
     mat_slots = {
-        slot1 = "emp_archer_body_01",
-        
+        slot1 = "emp_archer_body_01",   
     }
     mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p"
     
     colors = {
-        slot1 = "textures/archer/emp_archer_body_01_base_colour"
+        slot1 = "textures/archer/emp_archer_body_01_diffuse"
         
     }
     normals = {
