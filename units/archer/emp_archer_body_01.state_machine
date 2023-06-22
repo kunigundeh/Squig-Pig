@@ -1,4 +1,4 @@
-bones = "units/archer/emp_archer_body_01"
+bones = "units/archer/emp_archer_body_01",
 events = {
 	death = {}
 	hit_reaction = {}

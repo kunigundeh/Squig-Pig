@@ -1,5 +1,6 @@
 bones = [
-    "be_prop_0",
+"animroot"
+"be_prop_0",
 "be_prop_1",
 "be_prop_2",
 "be_prop_3",
