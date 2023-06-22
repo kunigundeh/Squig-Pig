@@ -209,6 +209,7 @@ mod:command("spawn_squig", "spawns the squig model without being linked to ai\nt
     local unit = spawn_package_to_player("units/squig_herd/grn_squig_herd_01")
     replace_textures(unit)
 end)
+
 mod:command("archer", "spawns the archer model without being linked to ai\nthis model can cause crashes", function()
     local unit = spawn_package_to_player("units/archer/emp_archer_body_01")
     replace_textures(unit)
