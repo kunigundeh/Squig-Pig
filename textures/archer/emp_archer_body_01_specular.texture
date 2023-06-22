@@ -1,6 +1,6 @@
 common = {
   input = {
-    filename = "textures/archer/emp_archer_body_01_base_specular"
+    filename = "textures/archer/emp_archer_body_01_specular"
   }
 
   output = {
